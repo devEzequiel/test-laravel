@@ -1,4 +1,4 @@
-FROM php:8.1-fpm
+FROM php:8.3-fpm
 
 # Set your user name and UID (replace with your username if needed)
 ARG user=ezequiel
