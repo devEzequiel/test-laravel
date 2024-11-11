@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Hotel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Hotel\CreateHotelRequest;
 use App\Http\Requests\Hotel\FilterHotelRequest;
+use App\Http\Requests\Hotel\UpdateHotelRequest;
 use App\Models\Hotel;
 use App\Services\Hotel\HotelService;
 use Exception;
@@ -55,11 +56,11 @@ class HotelController extends Controller
         }
     }
 
-    public function update(Request $request, $id): JsonResponse
+    public function update(UpdateHotelRequest $request, int $id): JsonResponse
     {
         try {
             $data = $request->validated();
-            $this->hotelService->createHotel($data);
+            $this->hotelService->updateHotel($id, $data);
 
             return $this->responseCreated('Hotel updated successfully');
         } catch (Exception $e) {
@@ -70,11 +71,11 @@ class HotelController extends Controller
     public function destroy($id): JsonResponse
     {
         try {
-            $hotel = $this->hotelService->deleteHotel($id);
+            $this->hotelService->deleteHotel($id);
 
-            return $this->responseAccepted($hotel);
+            return $this->responseAccepted();
         } catch (Exception $e) {
-            return $this->responseNotFound($e->getMessage());
+            return $this->responseUnprocessableEntity($e->getMessage());
         }
     }
 }

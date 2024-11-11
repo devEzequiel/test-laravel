@@ -33,7 +33,7 @@ abstract class AbstractRepository
         return $entity;
     }
 
-    public function delete($id)
+    public function delete($id): void
     {
         $entity = $this->model->findOrFail($id);
         $entity->delete();

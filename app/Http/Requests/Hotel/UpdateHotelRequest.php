@@ -22,7 +22,7 @@ class UpdateHotelRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'sometimes|required|string|max:255',
+            'name' => 'sometimes|required|string|max:255|unique:hotels,name',
             'address' => 'sometimes|required|string|max:255',
             'city' => 'sometimes|required|string|max:255',
             'state' => 'sometimes|required|string|max:255',
