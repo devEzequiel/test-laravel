@@ -8,18 +8,19 @@ use App\Http\Requests\Hotel\FilterHotelRequest;
 use App\Models\Hotel;
 use App\Services\Hotel\HotelService;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
 {
-    protected $hotelService;
+    protected HotelService $hotelService;
 
     public function __construct(HotelService $hotelService)
     {
         $this->hotelService = $hotelService;
     }
 
-    public function index(FilterHotelRequest $request)
+    public function index(FilterHotelRequest $request): JsonResponse
     {
         try {
             $filters = $request->validated();
@@ -31,7 +32,7 @@ class HotelController extends Controller
         }
     }
 
-    public function show($id)
+    public function show($id): JsonResponse
     {
         try {
             $hotel = $this->hotelService->findHotelById($id);
@@ -42,7 +43,7 @@ class HotelController extends Controller
         }
     }
 
-    public function store(CreateHotelRequest $request)
+    public function store(CreateHotelRequest $request): JsonResponse
     {
         try {
             $data = $request->validated();
@@ -54,7 +55,7 @@ class HotelController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): JsonResponse
     {
         try {
             $data = $request->validated();
@@ -66,7 +67,7 @@ class HotelController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
         try {
             $hotel = $this->hotelService->deleteHotel($id);
