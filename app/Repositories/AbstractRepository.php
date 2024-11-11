@@ -16,7 +16,7 @@ abstract class AbstractRepository
         return $this->model->filter($filter)->get();
     }
 
-    public function findById($id)
+    public function findById(int $id)
     {
         return $this->model->findOrFail($id);
     }

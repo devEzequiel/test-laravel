@@ -12,14 +12,14 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    protected $roomService;
+    protected RoomService $roomService;
 
     public function __construct(RoomService $roomService)
     {
         $this->roomService = $roomService;
     }
 
-    public function index(FilterRoomRequest $request)
+    public function index(FilterRoomRequest $request): \Illuminate\Http\JsonResponse
     {
         try {
             $filters = $request->validated();
@@ -31,7 +31,7 @@ class RoomController extends Controller
         }
     }
 
-    public function show(int $id)
+    public function show(int $id): \Illuminate\Http\JsonResponse
     {
         try {
             $room = $this->roomService->findRoomById($id);
@@ -42,7 +42,7 @@ class RoomController extends Controller
         }
     }
 
-    public function store(CreateRoomRequest $request)
+    public function store(CreateRoomRequest $request): \Illuminate\Http\JsonResponse
     {
         try {
             $data = $request->validated();
@@ -54,7 +54,7 @@ class RoomController extends Controller
         }
     }
 
-    public function update(UpdateRoomRequest $request, int $id)
+    public function update(UpdateRoomRequest $request, int $id): \Illuminate\Http\JsonResponse
     {
         try {
             $data = $request->validated();
@@ -66,7 +66,7 @@ class RoomController extends Controller
         }
     }
 
-    public function destroy(int $id)
+    public function destroy(int $id): \Illuminate\Http\JsonResponse
     {
         try {
             $this->roomService->deleteRoom($id);

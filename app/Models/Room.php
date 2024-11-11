@@ -2,15 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'hotel_id',
         'name',
         'description',
     ];
+
+    protected $with = ['hotel'];
 
     public function hotel()
     {
@@ -18,7 +22,6 @@ class Room extends Model
     }
 
     /**
-     * Aplica filtros de pesquisa na query.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param array $filters
