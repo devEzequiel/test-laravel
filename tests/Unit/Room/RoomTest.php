@@ -15,6 +15,10 @@ class RoomTest extends TestCase
     #[Test]
     public function it_validates_create_room_request()
     {
+        $user = \App\Models\User::factory()->create();
+
+        $this->actingAs($user, 'sanctum');
+
         $hotel = Hotel::create([
             'name' => 'Hotel de Teste',
             'address' => 'Rua Teste 123',
@@ -41,6 +45,10 @@ class RoomTest extends TestCase
     #[Test]
     public function it_shows_validation_errors_on_create()
     {
+        $user = \App\Models\User::factory()->create();
+
+        $this->actingAs($user, 'sanctum');
+
         $response = $this->post(route('rooms.store'), [
             'name' => 'Quarto 3 estrelas',
             'description' => 'Descrição do quarto padrão',
