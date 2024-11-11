@@ -11,6 +11,40 @@ class HotelTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    public function it_validates_create_hotel_request()
+    {
+        $response = $this->post(route('hotels.store'), [
+            'name' => 'Hotel Barreiras',
+            'address' => 'Rua Sergipis 18',
+            'city' => 'Brasília',
+            'state' => 'Distrito Federal',
+            'zip_code' => '54800-212',
+            'website' => 'https://www.hotelsegipe.com.br',
+        ]);
+
+        $response->assertStatus(201);
+        $this->assertDatabaseHas('hotels', [
+            'name' => 'Hotel Barreiras',
+            'city' => 'Brasília'
+        ]);
+    }
+
+    /** @test */
+    public function it_shows_validation_errors()
+    {
+        $response = $this->post(route('hotels.store'), [
+            'name' => 'Hotel Tester',
+            'address' => 'Rua Guará 28',
+            'city' => 'Brasília',
+            'state' => 'Distrito Federal',
+            'zip_code' => '54800-2122',
+            'website' => 'https://www.hotelholland.com.br',
+        ]);
+
+        $response->assertSessionHasErrors('zip_code');
+    }
+
+    /** @test */
     public function it_can_create_a_hotel()
     {
         $hotelData = [
