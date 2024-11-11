@@ -12,4 +12,5 @@ use Illuminate\Support\Facades\Route;
 
 require 'modules/room.php';
 require 'modules/hotel.php';
+require 'modules/auth.php';
 

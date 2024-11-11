@@ -6,7 +6,7 @@ use App\Repositories\Hotel\HotelRepositoryInterface;
 
 class HotelService
 {
-    protected $hotelRepository;
+    protected HotelRepositoryInterface $hotelRepository;
 
     public function __construct(HotelRepositoryInterface $hotelRepository)
     {

@@ -26,14 +26,14 @@ abstract class AbstractRepository
         return $this->model->create($data);
     }
 
-    public function update($id, array $data)
+    public function update(int $id, array $data)
     {
         $entity = $this->model->findOrFail($id);
         $entity->update($data);
         return $entity;
     }
 
-    public function delete($id): void
+    public function delete(int $id): void
     {
         $entity = $this->model->findOrFail($id);
         $entity->delete();

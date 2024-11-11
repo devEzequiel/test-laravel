@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Auth\AuthRepository;
+use App\Repositories\Auth\AuthRepositoryInterface;
 use App\Repositories\Hotel\HotelRepository;
 use App\Repositories\Hotel\HotelRepositoryInterface;
 use App\Repositories\Room\RoomRepository;
@@ -17,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(HotelRepositoryInterface::class, HotelRepository::class);
         $this->app->bind(RoomRepositoryInterface::class, RoomRepository::class);
+        $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);
     }
 
     /**

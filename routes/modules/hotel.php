@@ -9,4 +9,4 @@ Route::prefix('hotels')->group(function () {
     Route::get('{hotel}', [HotelController::class, 'show'])->name('hotels.show');
     Route::put('{hotel}', [HotelController::class, 'update'])->name('hotels.update');
     Route::delete('{hotel}', [HotelController::class, 'destroy'])->name('hotels.destroy');
-});
+})->middleware('auth:sanctum');

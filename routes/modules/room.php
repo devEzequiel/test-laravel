@@ -9,6 +9,6 @@ Route::prefix('rooms')->group(function () {
     Route::get('{room}', [RoomController::class, 'show'])->name('rooms.show');
     Route::put('{room}', [RoomController::class, 'update'])->name('rooms.update');
     Route::delete('{room}', [RoomController::class, 'destroy'])->name('rooms.destroy');
-});
+})->middleware('auth:sanctum');
 
 
