@@ -4,7 +4,7 @@ namespace App\Http\Requests\Room;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FilterRoomRequest extends FormRequest
+class UpdateRoomRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,9 @@ class FilterRoomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'search' => 'nullable|string|max:255'
+            'hotel_id' => 'sometimes|required|integer|exists:hotels,id',
+            'name' => 'sometimes|required|string|max:255',
+            'description' => 'sometimes|required|string',
         ];
     }
 }

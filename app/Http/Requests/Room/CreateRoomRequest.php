@@ -11,7 +11,7 @@ class CreateRoomRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class CreateRoomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'hotel_id' => 'required|integer|exists:hotels,id',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
         ];
     }
 }
