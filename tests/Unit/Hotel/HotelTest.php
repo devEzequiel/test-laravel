@@ -1,8 +1,9 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Hotel;
 
 use App\Models\Hotel;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -10,7 +11,7 @@ class HotelTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     public function it_validates_create_hotel_request()
     {
         $response = $this->post(route('hotels.store'), [
@@ -29,7 +30,7 @@ class HotelTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_shows_validation_errors()
     {
         $response = $this->post(route('hotels.store'), [
@@ -44,7 +45,7 @@ class HotelTest extends TestCase
         $response->assertSessionHasErrors('zip_code');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_hotel()
     {
         $hotelData = [
@@ -71,7 +72,7 @@ class HotelTest extends TestCase
         $this->assertEquals($hotel->city, 'Brasília');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_find_hotel()
     {
         $hotelData = [
@@ -92,7 +93,7 @@ class HotelTest extends TestCase
 
     }
 
-    /** @test */
+    #[Test]
     public function it_can_update_a_hotel()
     {
         $hotel = Hotel::create([

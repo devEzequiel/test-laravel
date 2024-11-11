@@ -1,9 +1,10 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Room;
 
 use App\Models\Hotel;
 use App\Models\Room;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -11,7 +12,7 @@ class RoomTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     public function it_validates_create_room_request()
     {
         $hotel = Hotel::create([
@@ -37,7 +38,7 @@ class RoomTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_shows_validation_errors_on_create()
     {
         $response = $this->post(route('rooms.store'), [
@@ -48,7 +49,7 @@ class RoomTest extends TestCase
         $response->assertSessionHasErrors('hotel_id');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_room()
     {
         $hotel = Hotel::create([
@@ -77,7 +78,7 @@ class RoomTest extends TestCase
         $this->assertEquals($room->name, 'Quarto Premium');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_find_room_by_name()
     {
         $hotel = Hotel::create([
