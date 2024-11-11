@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Repositories\Hotel\HotelRepository;
 use App\Repositories\Hotel\HotelRepositoryInterface;
+use App\Repositories\Room\RoomRepository;
+use App\Repositories\Room\RoomRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(HotelRepositoryInterface::class, HotelRepository::class);
+        $this->app->bind(RoomRepositoryInterface::class, RoomRepository::class);
     }
 
     /**
