@@ -40,8 +40,8 @@ Certifique-se que a porta Local 3306 (MySQL) esteja disponível <br />.
 
 Então, suba o container, instale as dependências, rode os testes etc.:
 
-1. `$ ./vendor/bin/sail up -d`
-2. `$ ./vendor/bin/sail composer install`
+1. `$ composer install`
+2. `$ ./vendor/bin/sail up -d`
 3. `$ ./vendor/bin/sail artisan migrate --seed`
 4. `$ ./vendor/bin/sail artisan key:generate`
 5. `$ ./vendor/bin/sail test`
